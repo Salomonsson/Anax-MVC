@@ -48,7 +48,7 @@ class CDIFactoryDefault extends CDI
             $request->init();
             return $request;
         });
-
+/*
         $this->setShared('url', function () {
             $url = new \Anax\Url\CUrl();
             $url->setSiteUrl($this->request->getSiteUrl());
@@ -59,7 +59,17 @@ class CDIFactoryDefault extends CDI
             $url->setUrlType($url::URL_APPEND);
             return $url;
         });
+*/
+        $this->setShared('url', function() {
+            $url = new \Anax\Url\CUrl();
+            $url->setSiteUrl($this->request->getSiteUrl());
+            $url->setBaseUrl($this->request->getBaseUrl());
+            $url->setScriptName($this->request->getScriptName());
+            $url->setUrlType($url::URL_CLEAN);
+            return $url;
+        });
 
+        
         $this->setShared('views', function () {
             $views = new \Anax\View\CViewContainerBasic();
             $views->setBasePath(ANAX_APP_PATH . 'view');
@@ -153,5 +163,8 @@ class CDIFactoryDefault extends CDI
             $filter->configure(ANAX_APP_PATH . 'config/text_filter.php');
             return $filter;
         });
+
+
+
     }
 }

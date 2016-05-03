@@ -1,3 +1,5 @@
-<h1>Hello World Pagecontroller with view</h1>
+<div id="home">
+	<h4>Detta är HELLO view</h4>
+	<?=$content?>
+</div>
 
-<p>This is a sample pagecontroller that shows how to use Anax with a view.</p>

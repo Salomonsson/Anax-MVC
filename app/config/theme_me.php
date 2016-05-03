@@ -21,8 +21,27 @@ return [
      * Add default views.
      */
     'views' => [
-        ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
-        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => [], 'sort' => -1],
+        [
+            'region'   => 'header', 
+            'template' => 'me/header', 
+            'data'     => [
+                'siteTitle' => "Min me-Peter-sida i PHPMVC",
+                'siteTagline' => "Här är en peter-tagline som säger nåt vackert",
+            ], 
+            'sort'     => -1
+        ],
+        [
+            'region' => 'navbar', 
+            'template' => [
+                'callback' => function() {
+                    return $this->di->navbar->create();
+                },
+            ], 
+            'data' => [], 
+            'sort' => -1
+        ],
+        ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
+    
     ],
 
 
@@ -38,7 +57,7 @@ return [
         'title_append' => ' | Peter-Anax a web template',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css'],
+       'stylesheets' => ['css/style.css', 'css/navbar.css'],
 
         // Inline style
         'style' => null,
@@ -53,7 +72,7 @@ return [
         'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
 
         // Array with javscript-files to include
-        'javascript_include' => [],
+        'javascript_include' => ['js/home.js', 'js/user.js'],
 
         // Use google analytics for tracking, set key or null to disable
         'google_analytics' => null,
